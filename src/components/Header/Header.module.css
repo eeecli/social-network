@@ -1,0 +1,14 @@
+.header {
+  grid-area: h;
+  background-color: #fff;
+  width: 100%;
+  text-align: center;
+  top: 0;
+  left: 0;
+  position: fixed;
+  box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.2);
+}
+.header img {
+  width: 58px;
+  margin: 0 auto;
+}

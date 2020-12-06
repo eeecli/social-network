@@ -1,0 +1,25 @@
+.nav {
+  grid-area: n;
+  background-color: #fff;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.item{
+  display: inline-block;
+  margin: 0 20px;
+  line-height: 60px;
+}
+
+.item a {
+  text-decoration: none;
+  color:  #444444;
+}
+
+.item a.active,
+.item a:hover {
+  color: #dc4734;
+}
