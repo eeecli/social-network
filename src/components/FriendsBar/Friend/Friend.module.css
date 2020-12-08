@@ -1,0 +1,13 @@
+.friend {
+  padding: 12px;
+  width: fit-content;
+  margin: auto;
+  display: inline-block;
+}
+
+.friend img {
+  height: 34px;
+  width: 34px;
+  border-radius: 17px;
+  cursor: pointer;
+}

@@ -2,7 +2,10 @@ import React from 'react'
 import classes from './MyPosts.module.css'
 import Post from './Post/Post'
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+
+  let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+
   return (
     <div>
       <div>
@@ -12,8 +15,7 @@ const MyPosts = () => {
           <button>Add Post</button>
         </div>
         <div className={classes.posts}>
-          <Post message='I aint sullen, Im lachrymose' likesCount='15'/>
-          <Post message='You have to seize life and relish every minute' likesCount='20'/>
+          {postsElements}
         </div>
       </div>
     </div>

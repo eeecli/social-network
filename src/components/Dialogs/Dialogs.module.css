@@ -16,6 +16,17 @@
   line-height: 60px;
   font-size: 14px;
   font-weight: 700;
+
+}
+
+.dialogs .dialog a{
+  color: #444444;
+  text-decoration: none;
+}
+
+.dialogs .dialog a.active,
+.dialogs .dialog a:hover {
+  color: #dc4734;
 }
 
 .messages {
