@@ -1,19 +1,19 @@
 .app-wrapper {
   display: grid;
-  
+
   grid-template-areas:
-  "h h h"
-  "cv cv cv"
-  "n n n"
-  ". c ."
-  ". f .";
+    'h h h'
+    'cv cv cv'
+    'n n n'
+    '. c .'
+    '. f .';
   grid-template-rows: 58px 300px 75px 1fr 58px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
 }
 
 body {
   background-color: #f1f1f1;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #444444;
   font-size: 14px;
   font-weight: 400;
@@ -27,4 +27,8 @@ button {
 
 .app-wrapper-content {
   grid-area: c;
+}
+
+.siebui-applet-title.VTB24_Yellow > span {
+  white-space: normal;
 }

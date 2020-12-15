@@ -1,4 +1,5 @@
 .dialogs {
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr 3fr;
   background-color: #fff;
@@ -12,14 +13,12 @@
 
 .dialogs .dialog {
   height: 60px;
-  border-bottom: 1px solid #dddddd;
   line-height: 60px;
   font-size: 14px;
   font-weight: 700;
-
 }
 
-.dialogs .dialog a{
+.dialogs .dialog a {
   color: #444444;
   text-decoration: none;
 }
@@ -31,6 +30,15 @@
 
 .messages {
   padding: 5px;
+  position: relative;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.messages .newMessage {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }
 
 .message {
