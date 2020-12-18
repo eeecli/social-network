@@ -10,11 +10,14 @@ const MyPosts = (props) => {
   let newPostElement = React.createRef();
 
   let addPost = () => {
-    props.addPost(newPostElement.current.value);
+    props.dispatch({ type: 'ADD-POST' });
   };
 
   let updateValue = () => {
-    props.updateNewPostText(newPostElement.current.value);
+    props.dispatch({
+      type: 'UPDATE-NEW-POST-TEXT',
+      newText: newPostElement.current.value,
+    });
   };
 
   return (
@@ -28,9 +31,7 @@ const MyPosts = (props) => {
               placeholder='Say Something'
               value={props.newPostText}
               onChange={updateValue}
-            >
-              {props.newPostText}
-            </textarea>
+            ></textarea>
             <button onClick={addPost}>Add Post</button>
           </div>
         </div>

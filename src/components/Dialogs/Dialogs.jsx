@@ -14,11 +14,15 @@ const Dialogs = (props) => {
   let sendMessageElement = React.createRef();
 
   let sendMessage = () => {
-    props.addMessage(sendMessageElement.current.value);
+    props.dispatch({ type: 'ADD-MESSAGE' });
+    sendMessageElement.current.value = ''; // костылек
   };
 
   let updateNewMessageText = () => {
-    props.updateNewMessageText(sendMessageElement.current.value);
+    props.dispatch({
+      type: 'UPDATE-NEW-MESSAGE-TEXT',
+      newMessage: sendMessageElement.current.value,
+    });
   };
 
   return (
