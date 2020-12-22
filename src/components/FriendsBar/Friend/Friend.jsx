@@ -1,13 +1,12 @@
-import React from 'react'
-import classes from './Friend.module.css'
+import React from 'react';
+import classes from './Friend.module.css';
 
-
-const Friend = () => {
+const Friend = (props) => {
   return (
     <div className={classes.friend}>
-      <img src='https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg'/>
-    </div>      
-  )
-}
+      <img src={props.icon} />
+    </div>
+  );
+};
 
 export default Friend;

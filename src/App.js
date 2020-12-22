@@ -41,7 +41,7 @@ function App(props) {
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settings} />
         </div>
-        <FriendsBar />
+        <FriendsBar friendsBar={props.state.friendsBar} />
       </div>
     </BrowserRouter>
   );

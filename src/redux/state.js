@@ -1,3 +1,7 @@
+import dialogsReduser from './dialogs-reduser';
+import friendsbarReduser from './friendsbar-reduser';
+import profileReduser from './profile-reduser';
+
 let store = {
   _state: {
     profilePage: {
@@ -25,6 +29,34 @@ let store = {
       ],
       newMessageText: '',
     },
+    friendsBar: {
+      friends: [
+        {
+          id: 1,
+          name: 'Mishulka',
+          icon:
+            'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg',
+        },
+        {
+          id: 2,
+          name: 'Colleni',
+          icon:
+            'https://anekdotsuper.ru/assets/cache_image/assets/img/koko/viberr-1_440x0_3a6.jpg',
+        },
+        {
+          id: 3,
+          name: 'Allushka',
+          icon:
+            'https://medialeaks.ru/wp-content/uploads/2020/01/JukzoYHHnSs.jpg',
+        },
+        {
+          id: 4,
+          name: 'Kishunchik',
+          icon:
+            'https://sun9-50.userapi.com/impf/c850136/v850136968/d1b24/-EMtgReU__k.jpg?size=200x0&quality=96&crop=0,0,960,960&sign=9c0e2c292504f9642a51d5d10997d550&ava=1',
+        },
+      ],
+    },
   },
 
   _callSubscriber() {
@@ -32,31 +64,10 @@ let store = {
   },
 
   dispatch(action) {
-    debugger;
-    if (action.type === 'ADD-POST') {
-      let post = {
-        id: 5,
-        message: this._state.profilePage.newPostText,
-        likesCount: 0,
-      };
-      this._state.profilePage.posts.push(post);
-      this._state.profilePage.newPostText = '';
-      this._callSubscriber(this._state);
-    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-      this._state.profilePage.newPostText = action.newText;
-      this._callSubscriber(this._state);
-    } else if (action.type === 'ADD-MESSAGE') {
-      let message = {
-        id: 5,
-        message: this._state.dialogsPage.newMessageText,
-      };
-      this._state.dialogsPage.messages.push(message);
-      this._state.dialogsPage.newMessageText = '';
-      this._callSubscriber(this._state);
-    } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-      this._state.dialogsPage.newMessageText = action.newMessage;
-      this._callSubscriber(this._state);
-    }
+    this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action);
+    this._state.profilePage = profileReduser(this._state.profilePage, action);
+    this._state.friendsBar = friendsbarReduser(this._state.friendsBar, action);
+    this._callSubscriber(this._state);
   },
 
   subscribe(observer) {
