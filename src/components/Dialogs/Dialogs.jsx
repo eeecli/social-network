@@ -2,10 +2,6 @@ import classes from './Dialogs.module.css';
 import React from 'react';
 import Message from './Messages/Messages';
 import DialogItem from './DialogItem/DialogItem';
-import {
-  sendMessageActionCreator,
-  updateNewMessageTextActionCreator,
-} from './../../redux/dialogs-reduser';
 
 const Dialogs = (props) => {
   debugger;
@@ -17,12 +13,11 @@ const Dialogs = (props) => {
   ));
 
   let sendMessage = () => {
-    props.dispatch(sendMessageActionCreator());
+    props.sendMessage();
   };
 
   let updateNewMessageText = (e) => {
-    let text = e.target.value;
-    props.dispatch(updateNewMessageTextActionCreator(text));
+    props.updateNewMessageText(e.target.value);
   };
 
   return (
@@ -34,7 +29,7 @@ const Dialogs = (props) => {
           <textarea
             placeholder='Text Message'
             onChange={updateNewMessageText}
-            value={props.newMessageText}
+            value={props.dialogsPage.newMessageText}
           ></textarea>
           <button onClick={sendMessage}>Send</button>
         </div>
