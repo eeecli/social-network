@@ -6,17 +6,11 @@ import App from './App';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
 
-export let renderTree = () => {
-  ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.getElementById('root')
-  );
-};
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);
 
-renderTree(store.getState());
-store.subscribe(() => {
-  renderTree(store.getState());
-});
 reportWebVitals();
