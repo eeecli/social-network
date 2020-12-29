@@ -5,11 +5,11 @@ import DialogItem from './DialogItem/DialogItem';
 
 const Dialogs = (props) => {
   let dialogElements = props.dialogs.map((d) => (
-    <DialogItem name={d.name} id={d.id} />
+    <DialogItem name={d.name} key={d.id} id={d.id} />
   ));
 
   let messagesElements = props.messages.map((m) => (
-    <Message message={m.message} id={m.id} />
+    <Message message={m.message} key={m.id} id={m.id} />
   ));
 
   let sendMessage = () => {
@@ -23,8 +23,10 @@ const Dialogs = (props) => {
   return (
     <div className={classes.dialogs}>
       <div className={classes.dialogItems}>{dialogElements}</div>
-      <div className={classes.messages}>
-        {messagesElements}
+      <div className={classes.messagesWrapper}>
+        <div className={classes.messages}>
+          {messagesElements}
+        </div>
         <div className={classes.newMessage}>
           <textarea
             placeholder='Text Message'

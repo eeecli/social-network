@@ -25,6 +25,9 @@ let initialState = {
   ],
 };
 const friendsbarReduser = (state = initialState, action) => {
-  return state;
+  switch(action.type){
+      default:
+        return state;
+  }
 };
 export default friendsbarReduser;
