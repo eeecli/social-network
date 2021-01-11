@@ -41,7 +41,7 @@ textarea {
   width: 100%;
 }
 
-button {
+.textWrapper button {
   top: 50%;
   right: 3px;
   position: absolute;

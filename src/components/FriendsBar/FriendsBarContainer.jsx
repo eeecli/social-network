@@ -9,9 +9,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-const FriendsBarContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FriendsBar);
-
-export default FriendsBarContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(FriendsBar);

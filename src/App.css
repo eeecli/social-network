@@ -5,8 +5,7 @@
     'h h h'
     'cv cv cv'
     'n n n'
-    '. c .'
-    '. f .';
+    '. c .';
   grid-template-rows: 58px 300px 75px 1fr 58px;
   grid-template-columns: 1fr 2fr 1fr;
 }
