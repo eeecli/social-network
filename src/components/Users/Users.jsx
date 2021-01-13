@@ -1,22 +1,38 @@
+import axios from 'axios';
 import React from 'react';
 import User from './User/User';
 import classes from './Users.module.css';
+import userPic from '../../assets/images/userpic.png';
 
-let Users = (props) => {
-  let usersElements = props.users.map((u) => (
-    <User
-      id={u.id}
-      fullName={u.fullName}
-      status={u.status}
-      icon={u.icon}
-      location={u.location}
-      followed={u.followed}
-      key={u.id}
-      toggleFollow={props.toggleFollow}
-    />
-  ));
+class Users extends React.Component {
+  componentDidMount = () => {
+    axios
+      .get('https://social-network.samuraijs.com/api/1.0/users')
+      .then((response) => {
+        this.props.setUsers(response.data.items);
+      });
+  };
 
-  return <div className={classes.usersWrapper}>{usersElements}</div>;
-};
+  render() {
+    return (
+      <div>
+        <div className={classes.usersWrapper}>
+          {this.props.users.map((u) => (
+            <User
+              id={u.id}
+              fullName={u.name}
+              status={u.status}
+              icon={u.photos.small || userPic}
+              location={'u.location'}
+              followed={u.followed}
+              key={u.id}
+              toggleFollow={this.props.toggleFollow}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default Users;
