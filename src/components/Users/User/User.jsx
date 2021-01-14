@@ -14,7 +14,9 @@ let User = (props) => {
             <div className={classes.userLocation}></div>
             {props.location.country}, {props.location.city}
           </div>
-          <div className={classes.userStatus}>{props.status}</div>
+          <div className={classes.userStatus}>
+            {props.status || 'Empty status'}
+          </div>
           {props.followed ? (
             <button
               className={classes.follow}
