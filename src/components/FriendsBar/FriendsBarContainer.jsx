@@ -5,8 +5,4 @@ const mapStateToProps = (state) => {
   return { friendsBar: state.friendsBar };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(FriendsBar);
+export default connect(mapStateToProps, {})(FriendsBar);

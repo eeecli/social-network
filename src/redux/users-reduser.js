@@ -48,26 +48,26 @@ const usersReduser = (state = initialState, action) => {
   }
 };
 
-export const followActionCreator = (userId) => ({
+export const toggleFollow = (userId) => ({
   type: FOLLOW_TOGGLE,
   userId,
 });
 
-export const setUSersActionCreator = (users) => ({
+export const setUsers = (users) => ({
   type: SET_USERS,
   users,
 });
 
-export const seCurrentPageActionCreator = (currentPage) => ({
+export const seCurrentPage = (currentPage) => ({
   type: SET_CURRENT_PAGE,
   currentPage,
 });
-export const setUsersCountActionCreator = (usersCount) => ({
+export const setUsersCount = (usersCount) => ({
   type: SET_USERS_COUNT,
   usersCount,
 });
 
-export const setIsLoadingActionCreator = (isLoading) => ({
+export const setIsLoading = (isLoading) => ({
   type: SET_IS_LOADING,
   isLoading,
 });

@@ -5,6 +5,10 @@
   padding: 15px;
 }
 
+.postsWrapper {
+  width: 100%;
+}
+
 .addPost {
   position: relative;
   margin-bottom: 15px;

@@ -18,22 +18,20 @@ const MyPosts = (props) => {
   };
 
   return (
-    <div>
-      <div>
-        <div className={classes.addPost}>
-          <img src='https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg' />
-          <div className={classes.textWrapper}>
-            <textarea
-              ref={newPostElement}
-              placeholder='Say Something'
-              value={props.newPostText}
-              onChange={updatePost}
-            ></textarea>
-            <button onClick={addPost}>Add Post</button>
-          </div>
+    <div className={classes.postsWrapper}>
+      <div className={classes.addPost}>
+        <img src='https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg' />
+        <div className={classes.textWrapper}>
+          <textarea
+            ref={newPostElement}
+            placeholder='Say Something'
+            value={props.newPostText}
+            onChange={updatePost}
+          ></textarea>
+          <button onClick={addPost}>Add Post</button>
         </div>
-        <div className={classes.posts}>{postsElements}</div>
       </div>
+      <div className={classes.posts}>{postsElements}</div>
     </div>
   );
 };

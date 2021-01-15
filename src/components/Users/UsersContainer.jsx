@@ -1,9 +1,9 @@
 import {
-  followActionCreator,
-  setUSersActionCreator,
-  seCurrentPageActionCreator,
-  setUsersCountActionCreator,
-  setIsLoadingActionCreator,
+  toggleFollow,
+  setUsers,
+  seCurrentPage,
+  setUsersCount,
+  setIsLoading,
 } from '../../redux/users-reduser';
 import Users from './Users';
 import { connect } from 'react-redux';
@@ -37,7 +37,7 @@ class UsersContainer extends React.Component {
   render() {
     return (
       <div>
-        {this.props.isLoading && <Loader />}
+        {this.props.isLoading ? <Loader /> : undefined}
 
         <Users
           usersCount={this.props.usersCount}
@@ -62,24 +62,10 @@ let mapStateToProps = (state) => {
   };
 };
 
-let mapDispatchToProps = (dispatch) => {
-  return {
-    toggleFollow: (userId) => {
-      dispatch(followActionCreator(userId));
-    },
-    setUsers: (users) => {
-      dispatch(setUSersActionCreator(users));
-    },
-    seCurrentPage: (page) => {
-      dispatch(seCurrentPageActionCreator(page));
-    },
-    setUsersCount: (usersCount) => {
-      dispatch(setUsersCountActionCreator(usersCount));
-    },
-    setIsLoading: (isLoading) => {
-      dispatch(setIsLoadingActionCreator(isLoading));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  toggleFollow,
+  setUsers,
+  seCurrentPage,
+  setUsersCount,
+  setIsLoading,
+})(UsersContainer);

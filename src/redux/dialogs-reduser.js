@@ -19,22 +19,21 @@ let initialState = {
 const dialogsReduser = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
-      return { 
+      return {
         ...state,
         newMessageText: '',
-        messages: [...state.messages, {id: 5,message: state.newMessageText}]
-       };  
+        messages: [...state.messages, { id: 5, message: state.newMessageText }],
+      };
     case UPDATE_NEW_MESSAGE_TEXT:
-      return { ...state,
-        newMessageText: action.newMessage}
+      return { ...state, newMessageText: action.newMessage };
     default:
       return state;
   }
 };
 
-export const sendMessageActionCreator = () => ({ type: ADD_MESSAGE });
+export const sendMessage = () => ({ type: ADD_MESSAGE });
 
-export const updateNewMessageTextActionCreator = (text) => ({
+export const updateNewMessageText = (text) => ({
   type: UPDATE_NEW_MESSAGE_TEXT,
   newMessage: text,
 });
