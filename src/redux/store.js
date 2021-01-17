@@ -2,11 +2,11 @@ import dialogsReduser from './dialogs-reduser';
 import friendsbarReduser from './friendsbar-reduser';
 import profileReduser from './profile-reduser';
 
-let store = {
+const store = {
   _state: {
     profilePage: {
       posts: [
-        { id: 1, message: 'I aint sullen, Im lachrymose', likesCount: 15 },
+        {id: 1, message: 'I aint sullen, Im lachrymose', likesCount: 15},
         {
           id: 2,
           message: 'You have to seize life and relish every minute',
@@ -17,15 +17,15 @@ let store = {
     },
     dialogsPage: {
       dialogs: [
-        { id: 1, name: 'Mishulka' },
-        { id: 2, name: 'Colleni' },
-        { id: 3, name: 'Allushka' },
-        { id: 4, name: 'Kishunchik' },
+        {id: 1, name: 'Mishulka'},
+        {id: 2, name: 'Colleni'},
+        {id: 3, name: 'Allushka'},
+        {id: 4, name: 'Kishunchik'},
       ],
       messages: [
-        { id: 1, message: 'Hi' },
-        { id: 2, message: 'Where are you?' },
-        { id: 3, message: 'I bring the shawerma for you' },
+        {id: 1, message: 'Hi'},
+        {id: 2, message: 'Where are you?'},
+        {id: 3, message: 'I bring the shawerma for you'},
       ],
       newMessageText: '',
     },
@@ -34,20 +34,17 @@ let store = {
         {
           id: 1,
           name: 'Mishulka',
-          icon:
-            'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg',
+          icon: 'https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg',
         },
         {
           id: 2,
           name: 'Colleni',
-          icon:
-            'https://anekdotsuper.ru/assets/cache_image/assets/img/koko/viberr-1_440x0_3a6.jpg',
+          icon: 'https://anekdotsuper.ru/assets/cache_image/assets/img/koko/viberr-1_440x0_3a6.jpg',
         },
         {
           id: 3,
           name: 'Allushka',
-          icon:
-            'https://medialeaks.ru/wp-content/uploads/2020/01/JukzoYHHnSs.jpg',
+          icon: 'https://medialeaks.ru/wp-content/uploads/2020/01/JukzoYHHnSs.jpg',
         },
         {
           id: 4,

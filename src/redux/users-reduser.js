@@ -4,7 +4,7 @@ const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_USERS_COUNT = 'SET-USERS-COUNT';
 const SET_IS_LOADING = 'SET-IS-LOADING';
 
-let initialState = {
+const initialState = {
   users: [],
   pageSize: 5,
   usersCount: 0,
@@ -17,8 +17,7 @@ const usersReduser = (state = initialState, action) => {
       return {
         ...state,
         users: state.users.map((u) => {
-          debugger;
-          if (u.id === action.userId) return { ...u, followed: !u.followed };
+          if (u.id === action.userId) return {...u, followed: !u.followed};
           return u;
         }),
       };

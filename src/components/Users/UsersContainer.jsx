@@ -1,23 +1,15 @@
-import {
-  toggleFollow,
-  setUsers,
-  seCurrentPage,
-  setUsersCount,
-  setIsLoading,
-} from '../../redux/users-reduser';
-import Users from './Users';
-import { connect } from 'react-redux';
-import axios from 'axios';
 import React from 'react';
+import {connect} from 'react-redux';
+import axios from 'axios';
+import {toggleFollow, setUsers, seCurrentPage, setUsersCount, setIsLoading} from '../../redux/users-reduser';
+import Users from './Users';
 import Loader from '../common/Loader/Loader';
 
 class UsersContainer extends React.Component {
   getUsersPage = (page) => {
     this.props.setIsLoading(true);
     axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`
-      )
+      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
       .then((response) => {
         this.props.setIsLoading(false);
         this.props.setUsers(response.data.items);
@@ -52,15 +44,13 @@ class UsersContainer extends React.Component {
   }
 }
 
-let mapStateToProps = (state) => {
-  return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    usersCount: state.usersPage.usersCount,
-    currentPage: state.usersPage.currentPage,
-    isLoading: state.usersPage.isLoading,
-  };
-};
+const mapStateToProps = (state) => ({
+  users: state.usersPage.users,
+  pageSize: state.usersPage.pageSize,
+  usersCount: state.usersPage.usersCount,
+  currentPage: state.usersPage.currentPage,
+  isLoading: state.usersPage.isLoading,
+});
 
 export default connect(mapStateToProps, {
   toggleFollow,

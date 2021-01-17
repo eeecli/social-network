@@ -1,4 +1,4 @@
-let initialState = {
+const initialState = {
   friends: [
     {
       id: 1,
@@ -8,8 +8,7 @@ let initialState = {
     {
       id: 2,
       name: 'Colleni',
-      icon:
-        'https://anekdotsuper.ru/assets/cache_image/assets/img/koko/viberr-1_440x0_3a6.jpg',
+      icon: 'https://anekdotsuper.ru/assets/cache_image/assets/img/koko/viberr-1_440x0_3a6.jpg',
     },
     {
       id: 3,
@@ -25,9 +24,9 @@ let initialState = {
   ],
 };
 const friendsbarReduser = (state = initialState, action) => {
-  switch(action.type){
-      default:
-        return state;
+  switch (action.type) {
+    default:
+      return state;
   }
 };
 export default friendsbarReduser;

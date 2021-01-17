@@ -10,10 +10,14 @@
   padding: 10px;
   margin-right: 15px;
   box-shadow: 0px 1px 15px 0px rgba(51, 51, 51, 0.2);
+  height: fit-content;
 }
 
 .userInfo {
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  line-height: 20px;
 }
 
 .userInfo .fullName {
@@ -35,8 +39,12 @@
   background-color: #dc4734;
 }
 
-.userInfo .lookingForAJob {
+.userInfo a {
+  text-decoration: none;
   color: #333333;
-  font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.userInfo a:hover {
+  color: #dc4734;
 }
