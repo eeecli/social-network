@@ -15,6 +15,7 @@ const Users = (props) => {
           <span
             role='button'
             tabIndex={0}
+            key={p}
             onClick={() => {
               props.onPageChanged(p);
             }}
@@ -37,6 +38,7 @@ const Users = (props) => {
             followed={u.followed}
             key={u.id}
             toggleFollow={props.toggleFollow}
+            followingInProgress={props.followingInProgress}
           />
         ))}
       </div>

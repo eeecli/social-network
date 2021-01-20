@@ -27,7 +27,8 @@
             }],
         "react/destructuring-assignment": "off",
         "react/prop-types": "off",
-        "no-plusplus": "off"
+        "no-plusplus": "off",
+        "no-debugger": "warn"
     },       
     "parser": "babel-eslint",
     "parserOptions": {

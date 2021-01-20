@@ -1,43 +1,36 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import axios from 'axios';
-import {toggleFollow, setUsers, seCurrentPage, setUsersCount, setIsLoading} from '../../redux/users-reduser';
+import {toggleUserFollow, seCurrentPage, setFollowingInProgress, getUsers} from '../../redux/users-reduser';
 import Users from './Users';
 import Loader from '../common/Loader/Loader';
 
 class UsersContainer extends React.Component {
-  getUsersPage = (page) => {
-    this.props.setIsLoading(true);
-    axios
-      .get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
-      .then((response) => {
-        this.props.setIsLoading(false);
-        this.props.setUsers(response.data.items);
-        this.props.setUsersCount(response.data.totalCount);
-      });
+  toggleFollow = (userId) => {
+    const isUserFollowed = this.props.users.find((item) => item.id === userId).followed;
+    this.props.toggleUserFollow(userId, isUserFollowed);
   };
 
   componentDidMount = () => {
-    this.getUsersPage(this.props.currentPage);
+    this.props.getUsers(this.props.currentPage, this.props.pageSize);
   };
 
   onPageChanged = (page) => {
     this.props.seCurrentPage(page);
-    this.getUsersPage(page);
+    this.props.getUsers(page, this.props.pageSize);
   };
 
   render() {
     return (
       <div>
         {this.props.isLoading ? <Loader /> : undefined}
-
         <Users
           usersCount={this.props.usersCount}
           pageSize={this.props.pageSize}
           users={this.props.users}
           currentPage={this.props.currentPage}
           onPageChanged={this.onPageChanged}
-          toggleFollow={this.props.toggleFollow}
+          toggleFollow={this.toggleFollow}
+          followingInProgress={this.props.followingInProgress}
         />
       </div>
     );
@@ -50,12 +43,12 @@ const mapStateToProps = (state) => ({
   usersCount: state.usersPage.usersCount,
   currentPage: state.usersPage.currentPage,
   isLoading: state.usersPage.isLoading,
+  followingInProgress: state.usersPage.followingInProgress,
 });
 
 export default connect(mapStateToProps, {
-  toggleFollow,
-  setUsers,
+  toggleUserFollow,
   seCurrentPage,
-  setUsersCount,
-  setIsLoading,
+  setFollowingInProgress,
+  getUsers,
 })(UsersContainer);

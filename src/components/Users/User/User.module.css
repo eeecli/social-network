@@ -37,6 +37,10 @@
   padding: 0;
 }
 
+.userWrapper button:disabled {
+color: #6666;
+}
+
 .userStatus {
   color: #666666;
   font-size: 10px;

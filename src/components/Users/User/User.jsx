@@ -17,15 +17,13 @@ const User = (props) => (
           {props.location.country} {props.location.city}
         </div>
         <div className={classes.userStatus}>{props.status || 'Empty status'}</div>
-        {props.followed ? (
-          <button className={classes.follow} onClick={() => props.toggleFollow(props.id)} type='button'>
-            Unfollow
-          </button>
-        ) : (
-          <button className={classes.follow} onClick={() => props.toggleFollow(props.id)} type='button'>
-            Follow
-          </button>
-        )}
+        <button
+          className={classes.follow}
+          onClick={() => props.toggleFollow(props.id)}
+          type='button'
+          disabled={props.followingInProgress.some((id) => id === props.id)}>
+          {props.followed === true ? 'Unfollow' : 'Follow'}
+        </button>
       </div>
     </div>
   </div>

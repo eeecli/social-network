@@ -1,8 +1,11 @@
+import {getUsersAPI, toggleFollowAPI} from '../api/api';
+
 const FOLLOW_TOGGLE = 'FOLLOW-TOGGLE';
 const SET_USERS = 'SET-USERS';
 const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
 const SET_USERS_COUNT = 'SET-USERS-COUNT';
 const SET_IS_LOADING = 'SET-IS-LOADING';
+const SET_FOLLOWING_IN_PROGRESS = 'SET-FOLLOWING-IN-PROGRESS';
 
 const initialState = {
   users: [],
@@ -10,6 +13,7 @@ const initialState = {
   usersCount: 0,
   currentPage: 1,
   isLoading: false,
+  followingInProgress: [],
 };
 const usersReduser = (state = initialState, action) => {
   switch (action.type) {
@@ -42,6 +46,13 @@ const usersReduser = (state = initialState, action) => {
         ...state,
         isLoading: action.isLoading,
       };
+    case SET_FOLLOWING_IN_PROGRESS:
+      return {
+        ...state,
+        followingInProgress: action.isInProgres
+          ? [...state.followingInProgress, action.userId]
+          : state.followingInProgress.filter((id) => id !== action.userId),
+      };
     default:
       return state;
   }
@@ -70,5 +81,30 @@ export const setIsLoading = (isLoading) => ({
   type: SET_IS_LOADING,
   isLoading,
 });
+
+export const setFollowingInProgress = (isInProgres, userId) => ({
+  type: SET_FOLLOWING_IN_PROGRESS,
+  isInProgres,
+  userId,
+});
+
+export const getUsers = (page, pageSize) => (dispatch) => {
+  dispatch(setIsLoading(true));
+  getUsersAPI(page, pageSize).then((response) => {
+    dispatch(setUsers(response.items));
+    dispatch(setUsersCount(response.totalCount));
+  });
+  dispatch(setIsLoading(false));
+};
+
+export const toggleUserFollow = (userId, isUserFollowed) => (dispatch) => {
+  dispatch(setIsLoading(true));
+  dispatch(setFollowingInProgress(true, userId));
+  toggleFollowAPI(userId, isUserFollowed).then((response) => {
+    if (response.resultCode === 0) dispatch(toggleFollow(userId));
+  });
+  dispatch(setIsLoading(false));
+  dispatch(setFollowingInProgress(false, userId));
+};
 
 export default usersReduser;

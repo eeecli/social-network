@@ -5,7 +5,6 @@
 
 .app-wrapper {
   display: grid;
-
   grid-template-areas:
     'h h h'
     'cv cv cv'

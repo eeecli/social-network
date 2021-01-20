@@ -7,7 +7,11 @@ const ProfileInfo = (props) => {
   if (!props.profile) return <Loader />;
   const setLinks = Object.values(props.profile.contacts)
     .filter((contact) => contact)
-    .map((key) => <a href={key}>{key}</a>);
+    .map((key) => (
+      <a href={key} key={key}>
+        {key}
+      </a>
+    ));
 
   return (
     <div className={classes.aboutWrapper}>
