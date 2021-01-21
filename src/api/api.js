@@ -7,15 +7,23 @@ const instance = axios.create({
   headers: key,
 });
 
-const axiosGet = (url) => instance.get(url).then((response) => response.data);
-const axiosDelete = (url) => instance.delete(url).then((response) => response.data);
-const axiosPost = (url) => instance.post(url).then((response) => response.data);
-
-export const getUsersAPI = (page = 1, pageSize = 10) => axiosGet(`users?page=${page}&count=${pageSize}`);
-
-export const toggleFollowAPI = (userId, isFollowed) => {
-  const url = `follow/${userId}`;
-  return isFollowed ? axiosDelete(url) : axiosPost(url);
+export const usersAPI = {
+  getUsers(page = 1, pageSize = 10) {
+    return instance.get(`users?page=${page}&count=${pageSize}`).then((response) => response.data);
+  },
+  toggleFollow(userId, isFollowed) {
+    const url = `follow/${userId}`;
+    return isFollowed
+      ? instance.delete(url).then((response) => response.data)
+      : instance.post(url).then((response) => response.data);
+  },
+  getProfile(userId = 2) {
+    return instance.get(`profile/${userId}`).then((response) => response.data);
+  },
 };
 
-export const getProfileAPI = (userId = 2) => axiosGet(`profile/${userId}`);
+export const authAPI = {
+  me() {
+    return instance.get(`auth/me`).then((response) => response.data);
+  },
+};

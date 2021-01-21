@@ -1,5 +1,7 @@
 import {connect} from 'react-redux';
+import {compose} from 'redux';
 import {sendMessage, updateNewMessageText} from '../../redux/dialogs-reduser';
+import {withAuthRedirect} from '../hoc/withAuthRedirect';
 import Dialogs from './Dialogs';
 
 const mapStateToProps = (state) => ({
@@ -8,15 +10,4 @@ const mapStateToProps = (state) => ({
   newMessageText: state.dialogsPage.newMessageText,
 });
 
-/* const mapDispatchToProps = (dispatch) => {
-  return {
-    sendMessage: () => {
-      dispatch(sendMessageActionCreator());
-    },
-    updateNewMessageText: (text) => {
-      dispatch(updateNewMessageTextActionCreator(text));
-    },
-  };
-}; */
-
-export default connect(mapStateToProps, {sendMessage, updateNewMessageText})(Dialogs);
+export default compose(withAuthRedirect, connect(mapStateToProps, {sendMessage, updateNewMessageText}))(Dialogs);

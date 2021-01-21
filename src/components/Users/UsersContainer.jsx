@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {compose} from 'redux';
 import {toggleUserFollow, seCurrentPage, setFollowingInProgress, getUsers} from '../../redux/users-reduser';
 import Users from './Users';
 import Loader from '../common/Loader/Loader';
@@ -46,9 +47,11 @@ const mapStateToProps = (state) => ({
   followingInProgress: state.usersPage.followingInProgress,
 });
 
-export default connect(mapStateToProps, {
-  toggleUserFollow,
-  seCurrentPage,
-  setFollowingInProgress,
-  getUsers,
-})(UsersContainer);
+export default compose(
+  connect(mapStateToProps, {
+    toggleUserFollow,
+    seCurrentPage,
+    setFollowingInProgress,
+    getUsers,
+  })
+)(UsersContainer);
