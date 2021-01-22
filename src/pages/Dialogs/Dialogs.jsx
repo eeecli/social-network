@@ -2,6 +2,8 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import Message from './Messages/Messages';
 import DialogItem from './DialogItem/DialogItem';
+import Textarea from '../../components/Textarea/Textarea';
+import Button from '../../components/Button/Button';
 
 const Dialogs = (props) => {
   const dialogElements = props.dialogs.map((d) => <DialogItem name={d.name} key={d.id} id={d.id} />);
@@ -22,10 +24,10 @@ const Dialogs = (props) => {
       <div className={classes.messagesWrapper}>
         <div className={classes.messages}>{messagesElements}</div>
         <div className={classes.newMessage}>
-          <textarea placeholder='Text Message' onChange={updateNewMessageText} value={props.newMessageText} />
-          <button onClick={sendMessage} type='button'>
-            Send
-          </button>
+          <Textarea placeholder='Text Message' value={props.newMessageText} textCallback={updateNewMessageText} />
+          <div className={classes.sendBtn}>
+            <Button buttonCallback={sendMessage} type='button' buttonText='Send' />
+          </div>
         </div>
       </div>
     </div>

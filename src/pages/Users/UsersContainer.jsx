@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'redux';
+import Loader from '../../components/common/Loader/Loader';
 import {toggleUserFollow, seCurrentPage, setFollowingInProgress, getUsers} from '../../redux/users-reduser';
 import Users from './Users';
-import Loader from '../common/Loader/Loader';
 
 class UsersContainer extends React.Component {
   toggleFollow = (userId) => {

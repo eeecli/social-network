@@ -1,29 +1,29 @@
 import React from 'react';
+import Button from '../../../components/Button/Button';
+import Textarea from '../../../components/Textarea/Textarea';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
   const postsElements = props.posts.map((p) => <Post message={p.message} likesCount={p.likesCount} key={p.id} />);
 
-  const newPostElement = React.createRef();
-
   const addPost = () => {
     props.addPost();
   };
 
-  const updatePost = () => {
-    props.updatePost(newPostElement.current.value);
+  const updatePost = (e) => {
+    props.updatePost(e.target.value);
   };
 
   return (
     <div className={classes.postsWrapper}>
       <div className={classes.addPost}>
         <img src='https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg' alt='profile icon' />
-        <div className={classes.textWrapper}>
-          <textarea ref={newPostElement} placeholder='Say Something' value={props.newPostText} onChange={updatePost} />
-          <button onClick={addPost} type='button'>
-            Add Post
-          </button>
+        <div className={classes.addPostWrapper}>
+          <Textarea placeholder='Say Something' value={props.newPostText} textCallback={updatePost} />
+          <div className={classes.sendBtn}>
+            <Button buttonCallback={addPost} type='button' buttonText='Add Post' />
+          </div>
         </div>
       </div>
       <div className={classes.posts}>{postsElements}</div>

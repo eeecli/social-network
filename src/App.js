@@ -2,16 +2,16 @@ import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import './App.css';
 import Cover from './components/Cover/Cover';
-import HeaderContainer from './components/Header/HeaderContainer';
-import Navbar from './components/Navbar/Navbar';
-import ProfileContainer from './components/Profile/ProfileContainer';
-import News from './components/News/News';
-import Music from './components/Music/Music';
-import Settings from './components/Settings/Settings';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
-import FriendsBarContainer from './components/FriendsBar/FriendsBarContainer';
-import UsersContainer from './components/Users/UsersContainer';
-import Login from './components/Login/Login';
+import HeaderContainer from './pages/Header/HeaderContainer';
+import Navbar from './pages/Navbar/Navbar';
+import ProfileContainer from './pages/Profile/ProfileContainer';
+import News from './pages/News/News';
+import Music from './pages/Music/Music';
+import Settings from './pages/Settings/Settings';
+import DialogsContainer from './pages/Dialogs/DialogsContainer';
+import FriendsBarContainer from './pages/FriendsBar/FriendsBarContainer';
+import UsersContainer from './pages/Users/UsersContainer';
+import Login from './pages/Login/Login';
 
 function App() {
   return (
