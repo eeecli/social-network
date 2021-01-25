@@ -54,4 +54,5 @@
   right: 3px;
   position: absolute;
   margin-right: 2px;
+  transform: translateY(-50%);
 }

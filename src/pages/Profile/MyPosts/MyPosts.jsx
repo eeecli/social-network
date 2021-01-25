@@ -1,18 +1,14 @@
 import React from 'react';
+import {Field, reduxForm} from 'redux-form';
 import Button from '../../../components/Button/Button';
-import Textarea from '../../../components/Textarea/Textarea';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
   const postsElements = props.posts.map((p) => <Post message={p.message} likesCount={p.likesCount} key={p.id} />);
 
-  const addPost = () => {
-    props.addPost();
-  };
-
-  const updatePost = (e) => {
-    props.updatePost(e.target.value);
+  const onSubmit = (val) => {
+    props.addPost(val.post);
   };
 
   return (
@@ -20,15 +16,25 @@ const MyPosts = (props) => {
       <div className={classes.addPost}>
         <img src='https://upload.wikimedia.org/wikipedia/commons/9/9a/Gull_portrait_ca_usa.jpg' alt='profile icon' />
         <div className={classes.addPostWrapper}>
-          <Textarea placeholder='Say Something' value={props.newPostText} textCallback={updatePost} />
-          <div className={classes.sendBtn}>
-            <Button buttonCallback={addPost} type='button' buttonText='Add Post' />
-          </div>
+          <MyPostsReduxForm onSubmit={onSubmit} />
         </div>
       </div>
       <div className={classes.posts}>{postsElements}</div>
     </div>
   );
 };
+
+const MyPostsForm = (props) => (
+  <form onSubmit={props.handleSubmit}>
+    <div>
+      <Field name='post' placeholder='Say Something' component='textarea' type='text' />
+    </div>
+    <div className={classes.sendBtn}>
+      <Button type='button' buttonText='Send' />
+    </div>
+  </form>
+);
+
+const MyPostsReduxForm = reduxForm({form: 'dialogs'})(MyPostsForm);
 
 export default MyPosts;

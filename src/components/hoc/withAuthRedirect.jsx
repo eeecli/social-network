@@ -7,7 +7,8 @@ const mapStateToProps = (state) => ({
 });
 
 export const withAuthRedirect = (Component) => {
-  const RedirectComponent = (props) => (props.isAuth ? <Component props={props} /> : <Redirect to='/login' />);
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  const RedirectComponent = (props) => (props.isAuth ? <Component {...props} /> : <Redirect to='/login' />);
 
   return connect(mapStateToProps)(RedirectComponent);
 };

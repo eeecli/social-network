@@ -13,7 +13,6 @@ const initialState = {
     {id: 2, message: 'Where are you?'},
     {id: 3, message: 'I bring the shawerma for you'},
   ],
-  newMessageText: '',
 };
 
 const dialogsReduser = (state = initialState, action) => {
@@ -21,8 +20,7 @@ const dialogsReduser = (state = initialState, action) => {
     case ADD_MESSAGE:
       return {
         ...state,
-        newMessageText: '',
-        messages: [...state.messages, {id: 5, message: state.newMessageText}],
+        messages: [...state.messages, {id: 5, message: action.message}],
       };
     case UPDATE_NEW_MESSAGE_TEXT:
       return {...state, newMessageText: action.newMessage};
@@ -31,11 +29,6 @@ const dialogsReduser = (state = initialState, action) => {
   }
 };
 
-export const sendMessage = () => ({type: ADD_MESSAGE});
-
-export const updateNewMessageText = (text) => ({
-  type: UPDATE_NEW_MESSAGE_TEXT,
-  newMessage: text,
-});
+export const sendMessage = (message) => ({type: ADD_MESSAGE, message});
 
 export default dialogsReduser;

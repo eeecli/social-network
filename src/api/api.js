@@ -17,16 +17,25 @@ export const usersAPI = {
       ? instance.delete(url).then((response) => response.data)
       : instance.post(url).then((response) => response.data);
   },
-  getProfile(userId = 2) {
+};
+
+export const profileAPI = {
+  getProfile(userId = 14159) {
     return instance.get(`profile/${userId}`).then((response) => response.data);
   },
-  getStatus(userId = 2) {
+  getStatus(userId = 14159) {
     return instance.get(`profile/status/${userId}`).then((response) => response.data);
+  },
+  updateStatus(status) {
+    return instance.put(`profile/status/`, {status}).then((response) => response.data);
   },
 };
 
 export const authAPI = {
   me() {
     return instance.get(`auth/me`).then((response) => response.data);
+  },
+  login(email, password, rememberMe) {
+    return instance.post(`auth/login`, {email, password, rememberMe}).then((response) => response.data);
   },
 };

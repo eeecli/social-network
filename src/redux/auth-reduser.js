@@ -7,6 +7,7 @@ const initialState = {
   email: null,
   login: null,
   isUserAuth: false,
+  rememberMe: false,
 };
 const authReduser = (state = initialState, action) => {
   switch (action.type) {
@@ -31,6 +32,15 @@ export const getAuthUserData = () => (dispatch) => {
     if (response.resultCode === 0) {
       const {id, email, login} = response.data;
       dispatch(setAuthUserData(id, email, login));
+    }
+  });
+};
+
+export const loginUser = (email, password, rememberMe) => (dispatch) => {
+  authAPI.login(email, password, rememberMe).then((response) => {
+    if (response.resultCode === 0) {
+      const {userId} = response.data;
+      dispatch(setAuthUserData(userId));
     }
   });
 };

@@ -32,6 +32,34 @@ button {
   grid-area: c;
 }
 
-.siebui-applet-title.VTB24_Yellow > span {
-  white-space: normal;
+textarea {
+  resize: none;
+  box-shadow: inset 0px 1px 10px 0px rgba(85, 85, 85, 0.2);
+  border: none;
+  display: block;
+  height: 44px;
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  padding: 13px 114px 13px 20px;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+input {
+  box-shadow: inset 0px 1px 10px 0px rgba(85, 85, 85, 0.2);
+  border: none;
+  display: block;
+  height: 30px;
+  border-radius: 15px;
+  background-color: #f1f1f1;
+  padding: 8px 20px;
+  outline: none;
+  box-sizing: border-box;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+  color: #444444;
+  font-size: 14px;
+  font-weight: 400;
 }

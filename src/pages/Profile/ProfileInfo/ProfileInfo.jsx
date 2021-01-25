@@ -22,7 +22,7 @@ const ProfileInfo = (props) => {
       <div className={classes.userInfo}>
         <div className={classes.fullName}>{props.profile.fullName}</div>
         <div className={classes.description}>{props.profile.aboutMe}</div>
-        <ProfileStatus statusText={props.status} />
+        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
         {props.profile.lookingForAJob === true ? (
           <div className={classes.lookingForAJob}>{props.profile.lookingForAJobDescription}</div>
         ) : undefined}

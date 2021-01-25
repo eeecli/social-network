@@ -5,7 +5,7 @@ const Textarea = (props) => (
   <textarea
     placeholder={props.placeholder}
     value={props.value}
-    onChange={props.textCallback}
+    onChange={props.onChangeCB}
     className={classes.textWrapper}
   />
 );

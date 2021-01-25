@@ -1,29 +1,44 @@
 import React from 'react';
-import Input from '../../../components/Input/Input';
 import classes from './ProfileInfo.module.css';
 
 class ProfileStatus extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       editMode: false,
+      status: this.props.status,
     };
-    this.toggleMode = this.toggleEditMode.bind(this);
   }
 
-  toggleEditMode() {
+  componentDidUpdate(prevState, prevProps) {
+    this.onUpdate = () => {
+      if (prevState.status !== this.props.status)
+        this.setState({
+          status: this.props.status,
+        });
+    };
+  }
+
+  toggleEditMode = () => {
+    if (this.state.editMode) this.props.updateStatus(this.state.status);
     this.setState((prevState) => ({
       editMode: !prevState.editMode,
     }));
-  }
+  };
+
+  updateStatus = (e) => {
+    this.setState({
+      status: e.target.value,
+    });
+  };
 
   render() {
     return (
       <div className={classes.status}>
         {this.state.editMode ? (
-          <Input className={classes.input} onBlurCB={this.toggleMode} value={this.props.statusText} />
+          <input onBlur={this.toggleEditMode} value={this.state.status} maxLength={300} onChange={this.updateStatus} />
         ) : (
-          <span onDoubleClick={this.toggleMode}>{this.props.statusText}</span>
+          <span onDoubleClick={this.toggleEditMode}>{this.props.status || 'Empty status'}</span>
         )}
       </div>
     );
