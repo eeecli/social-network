@@ -1,0 +1,8 @@
+.error {
+    border: 2px solid #e47263;
+}
+
+.error span {
+    background-color: #e47263;
+    color: #ffffff;
+}
