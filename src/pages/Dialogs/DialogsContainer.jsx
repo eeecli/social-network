@@ -7,7 +7,7 @@ import Dialogs from './Dialogs';
 const mapStateToProps = (state) => ({
   dialogs: state.dialogsPage.dialogs,
   messages: state.dialogsPage.messages,
-  isAuth: state.auth.isUserAuth,
+  isAuth: state.auth.isAuth,
 });
 
 export default compose(withAuthRedirect, connect(mapStateToProps, {sendMessage}))(Dialogs);

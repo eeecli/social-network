@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 
 const mapStateToProps = (state) => ({
-  isAuth: state.auth.isUserAuth,
+  isAuth: state.auth.isAuth,
 });
 
 export const withAuthRedirect = (Component) => {
