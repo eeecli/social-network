@@ -1,48 +1,30 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import classes from './ProfileInfo.module.css';
 
-class ProfileStatus extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editMode: false,
-      status: this.props.status,
-    };
-  }
+const ProfileStatus = (props) => {
+  const [editMode, setEditMode] = useState(false);
+  const [status, setStatus] = useState(props.status);
 
-  componentDidUpdate(prevState) {
-    this.onUpdate = () => {
-      if (prevState.status !== this.props.status)
-        this.setState({
-          status: this.props.status,
-        });
-    };
-  }
+  useEffect(() => {
+    setStatus(props.status);
+  }, [props.status]);
 
-  toggleEditMode = () => {
-    if (this.state.editMode) this.props.updateStatus(this.state.status);
-    this.setState((prevState) => ({
-      editMode: !prevState.editMode,
-    }));
+  const toggleEditMode = () => {
+    if (editMode) props.updateStatus(status);
+    setEditMode(!editMode);
   };
 
-  updateStatus = (e) => {
-    this.setState({
-      status: e.target.value,
-    });
-  };
+  const onStatusChange = (e) => setStatus(e.target.value);
 
-  render() {
-    return (
-      <div className={classes.status}>
-        {this.state.editMode ? (
-          <input onBlur={this.toggleEditMode} value={this.state.status} maxLength={300} onChange={this.updateStatus} />
-        ) : (
-          <span onDoubleClick={this.toggleEditMode}>{this.props.status || 'Empty status'}</span>
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={classes.status}>
+      {editMode ? (
+        <input onBlur={toggleEditMode} value={status} maxLength={300} onChange={onStatusChange} />
+      ) : (
+        <span onDoubleClick={toggleEditMode}>{status || 'Empty status'}</span>
+      )}
+    </div>
+  );
+};
 
 export default ProfileStatus;

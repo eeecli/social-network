@@ -6,6 +6,7 @@ import friendsbarReduser from './friendsbar-reduser';
 import profileReduser from './profile-reduser';
 import usersReduser from './users-reduser';
 import authReduser from './auth-reduser';
+import appReduser from './app-reduser';
 
 const redusers = combineReducers({
   dialogsPage: dialogsReduser,
@@ -14,6 +15,7 @@ const redusers = combineReducers({
   usersPage: usersReduser,
   auth: authReduser,
   form: formReduser,
+  app: appReduser,
 });
 
 const store = createStore(redusers, applyMiddleware(thunk));

@@ -88,8 +88,9 @@ export const setFollowingInProgress = (isInProgres, userId) => ({
   userId,
 });
 
-export const getUsers = (page, pageSize) => (dispatch) => {
+export const requestUsers = (page, pageSize) => (dispatch) => {
   dispatch(setIsLoading(true));
+  dispatch(seCurrentPage(page));
   usersAPI.getUsers(page, pageSize).then((response) => {
     dispatch(setUsers(response.items));
     dispatch(setUsersCount(response.totalCount));
