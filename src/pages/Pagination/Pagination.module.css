@@ -1,0 +1,34 @@
+.pagination {
+  padding: 0 6px;
+  margin-bottom: 15px;
+  width: 1000px;
+  background-color: #ffffff;
+  height: 30px;
+  line-height: 30px;
+  color: #666666;
+  font-size: 14px;
+  font-weight: 400;
+  box-shadow: 0px 1px 15px 0px rgba(51, 51, 51, 0.2);
+  text-align: center;
+}
+
+.pagination span {
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.pagination .currentPage {
+  background-color: #dc4734;
+  color: #ffffff;
+  font-weight: 600;
+  
+}
+
+
+.pagination span:hover{
+   background-color: #333333;
+   color: #ffffff;
+   transition: 0.4s;
+}

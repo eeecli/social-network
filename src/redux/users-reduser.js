@@ -1,17 +1,14 @@
 import {usersAPI} from '../api/api';
 
-const FOLLOW_TOGGLE = 'FOLLOW-TOGGLE';
-const SET_USERS = 'SET-USERS';
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE';
-const SET_USERS_COUNT = 'SET-USERS-COUNT';
-const SET_IS_LOADING = 'SET-IS-LOADING';
-const SET_FOLLOWING_IN_PROGRESS = 'SET-FOLLOWING-IN-PROGRESS';
+const FOLLOW_TOGGLE = 'social-network/users-reduser/FOLLOW-TOGGLE';
+const SET_USERS = 'social-network/users-reduser/SET-USERS';
+const SET_IS_LOADING = 'social-network/users-reduser/SET-IS-LOADING';
+const SET_FOLLOWING_IN_PROGRESS = 'social-network/users-reduser/SET-FOLLOWING-IN-PROGRESS';
+const SET_USERS_COUNT = 'social-network/users-reduser/SET-USERS-COUNT';
 
 const initialState = {
   users: [],
-  pageSize: 5,
   usersCount: 0,
-  currentPage: 1,
   isLoading: false,
   followingInProgress: [],
 };
@@ -30,11 +27,6 @@ const usersReduser = (state = initialState, action) => {
       return {
         ...state,
         users: action.users,
-      };
-    case SET_CURRENT_PAGE:
-      return {
-        ...state,
-        currentPage: action.currentPage,
       };
     case SET_USERS_COUNT:
       return {
@@ -68,10 +60,6 @@ export const setUsers = (users) => ({
   users,
 });
 
-export const seCurrentPage = (currentPage) => ({
-  type: SET_CURRENT_PAGE,
-  currentPage,
-});
 export const setUsersCount = (usersCount) => ({
   type: SET_USERS_COUNT,
   usersCount,
@@ -88,22 +76,19 @@ export const setFollowingInProgress = (isInProgres, userId) => ({
   userId,
 });
 
-export const requestUsers = (page, pageSize) => (dispatch) => {
+export const requestUsers = (page, pageSize) => async (dispatch) => {
   dispatch(setIsLoading(true));
-  dispatch(seCurrentPage(page));
-  usersAPI.getUsers(page, pageSize).then((response) => {
-    dispatch(setUsers(response.items));
-    dispatch(setUsersCount(response.totalCount));
-  });
+  const response = await usersAPI.getUsers(page, pageSize);
+  dispatch(setUsers(response.data.items));
+  dispatch(setUsersCount(response.data.totalCount));
   dispatch(setIsLoading(false));
 };
 
-export const toggleUserFollow = (userId, isUserFollowed) => (dispatch) => {
+export const toggleUserFollow = (userId, isUserFollowed) => async (dispatch) => {
   dispatch(setIsLoading(true));
   dispatch(setFollowingInProgress(true, userId));
-  usersAPI.toggleFollow(userId, isUserFollowed).then((response) => {
-    if (response.resultCode === 0) dispatch(toggleFollow(userId));
-  });
+  const response = await usersAPI.toggleFollow(userId, isUserFollowed);
+  if (response.data.resultCode === 0) dispatch(toggleFollow(userId));
   dispatch(setIsLoading(false));
   dispatch(setFollowingInProgress(false, userId));
 };

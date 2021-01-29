@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {compose} from 'redux';
 import Loader from '../../components/common/Loader/Loader';
 import {toggleUserFollow, setFollowingInProgress, requestUsers} from '../../redux/users-reduser';
+import {setCurrentPage} from '../../redux/pagination-reduser';
 import {
   getUsers,
   getCurrentPage,
@@ -25,6 +26,7 @@ class UsersContainer extends React.Component {
 
   onPageChanged = (page) => {
     this.props.requestUsers(page, this.props.pageSize);
+    this.props.setCurrentPage(page);
   };
 
   render() {
@@ -59,5 +61,6 @@ export default compose(
     toggleUserFollow,
     setFollowingInProgress,
     requestUsers,
+    setCurrentPage,
   })
 )(UsersContainer);

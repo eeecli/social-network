@@ -7,6 +7,7 @@ import profileReduser from './profile-reduser';
 import usersReduser from './users-reduser';
 import authReduser from './auth-reduser';
 import appReduser from './app-reduser';
+import paginationReduser from './pagination-reduser';
 
 const redusers = combineReducers({
   dialogsPage: dialogsReduser,
@@ -16,6 +17,7 @@ const redusers = combineReducers({
   auth: authReduser,
   form: formReduser,
   app: appReduser,
+  pagination: paginationReduser,
 });
 
 const store = createStore(redusers, applyMiddleware(thunk));
