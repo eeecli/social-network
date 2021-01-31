@@ -9,6 +9,7 @@
   background-color: #dc4734;
   text-transform: uppercase;
   outline: none;
+  height: 34px;
 }
 
 .button:hover {

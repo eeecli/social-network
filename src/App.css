@@ -1,3 +1,9 @@
+@font-face {
+ font-family: "icomoon";
+ src: url('./assets/fonts/icomoon.ttf')
+}
+
+
 .app-wrapper {
   display: grid;
   grid-template-areas:
@@ -53,10 +59,9 @@ input:not([type='checkbox']) {
   outline: none;
   box-sizing: border-box;
   width: 100%;
-  font-family: 'Roboto', sans-serif;
   color: #444444;
-  font-size: 14px;
   font-weight: 400;
+  margin: 2px 0;
 }
 
 input[type=checkbox] {
@@ -70,11 +75,13 @@ input[type=checkbox] {
   background-color: #f1f1f1;
   outline: none;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
   color: #444444;
-  font-size: 14px;
   font-weight: 400;
   position: relative;
+}
+
+input[type=checkbox]+span{
+  line-height: 25px;
 }
 
 input[type=checkbox]:hover,
@@ -103,4 +110,32 @@ input[type=checkbox]:checked:before {
   -ms-transform: rotate(-45deg);
   transform: rotate(-45deg);
   position: absolute;
+}
+
+input[type=file] {
+  display: none;
+}
+
+.icon-pencil:before {
+  font-family: icomoon;
+  content: "\e905";
+}
+
+input,textarea {
+      font: 400 13.3333px Arial;
+    font-style: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    font-weight: 400;
+    font-stretch: normal;
+    font-size: 13.3333px;
+    line-height: normal;
+    font-family: monospace;
+}
+
+.formSubmitError {
+    text-align: center;
+    color: #dc4734;
 }

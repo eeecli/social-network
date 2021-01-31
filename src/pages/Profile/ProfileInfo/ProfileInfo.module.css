@@ -1,3 +1,5 @@
+.avatar {position: relative;}
+
 .avatar img {
   width: 270px;
   height: 270px;
@@ -11,6 +13,27 @@
   margin-right: 15px;
   box-shadow: 0px 1px 15px 0px rgba(51, 51, 51, 0.2);
   height: fit-content;
+  
+}
+
+.uploadPhoto {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 4px;
+  opacity: 0;
+}
+
+.avatar img:hover +.uploadPhoto,
+.uploadPhoto:hover {
+  opacity: 1;
+  transition: 0.4s;
+}
+
+.uploadPhoto:hover {
+  color:  #e47263;
+  background-color: #f1f1f144;
+  border-radius: 3px;
 }
 
 .userInfo {
@@ -20,31 +43,7 @@
   line-height: 20px;
 }
 
-.userInfo .fullName {
-  font-size: 18px;
-  font-weight: 700;
-  color: #333333;
-  margin-bottom: 35px;
-  text-transform: capitalize;
-  position: relative;
-}
-
-.userInfo .fullName:before {
-  bottom: -12px;
-  left: 0;
-  width: 30px;
-  height: 1px;
-  content: '';
-  position: absolute;
-  background-color: #dc4734;
-}
-
-.userInfo a {
-  text-decoration: none;
-  color: #333333;
-  font-weight: 600;
-}
-
-.userInfo a:hover {
-  color: #dc4734;
+.status {
+  line-height: 34px;
+  margin: 15px 0;
 }

@@ -7,3 +7,7 @@
     background-color: #e47263;
     color: #ffffff;
 }
+
+.inputWrapper {
+    display: flex
+}

@@ -1,0 +1,9 @@
+.contact a {
+  text-decoration: none;
+  color: #333333;
+  font-weight: 600;
+}
+
+.contact a:hover {
+  color: #dc4734;
+}

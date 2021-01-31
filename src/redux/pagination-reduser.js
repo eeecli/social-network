@@ -1,5 +1,4 @@
 const SET_CURRENT_PAGE = 'social-network/paginator-reduser/SET-CURRENT-PAGE';
-const SET_ITEMS_COUNT = 'social-network/paginator-reduser/SET-ITEMS-COUNT';
 
 const initialState = {
   pageSize: 10,

@@ -10,6 +10,7 @@ const ProfileStatus = (props) => {
   }, [props.status]);
 
   const toggleEditMode = () => {
+    if (!props.isOwner) return;
     if (editMode) props.updateStatus(status);
     setEditMode(!editMode);
   };
