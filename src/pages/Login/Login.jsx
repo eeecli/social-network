@@ -10,7 +10,7 @@ import classes from './Login.module.css';
 
 const Login = (props) => {
   const onSubmit = (val) => {
-    props.login(val.email, val.password, val.rememberme);
+    props.login(val.email, val.password, val.rememberme, val.captcha);
   };
 
   if (props.isAuth) return <Redirect to='/profile' />;
@@ -18,7 +18,7 @@ const Login = (props) => {
   return (
     <div className={classes.loginWrapper}>
       <h1>Login</h1>
-      <LoginReduxForm onSubmit={onSubmit} />
+      <LoginReduxForm onSubmit={onSubmit} captchaURL={props.captchaURL} />
     </div>
   );
 };
@@ -35,6 +35,12 @@ const LoginForm = (props) => (
       <Field name='rememberme' type='checkbox' component={Input} label='rememberme' />
     </div>
     {props.error ? <div className={classes.formSubmitError}>{props.error}</div> : undefined}
+    {props.captchaURL ? (
+      <div>
+        <img src={props.captchaURL} alt='captha' />
+        <Field name='captcha' placeholder='Enter symbols' component={Input} type='text' />
+      </div>
+    ) : undefined}
     <div>
       <Button buttonText='Login' type='submit' />
     </div>
@@ -43,6 +49,7 @@ const LoginForm = (props) => (
 
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
+  captchaURL: state.auth.captchaURL,
 });
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
