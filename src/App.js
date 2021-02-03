@@ -1,5 +1,5 @@
 import React, {Suspense} from 'react';
-import {BrowserRouter, Route, withRouter} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
 import './App.css';
 import {connect, Provider} from 'react-redux';
 import {compose} from 'redux';
@@ -22,7 +22,16 @@ const DialogsContainer = React.lazy(() => import('./pages/Dialogs/DialogsContain
 class SocialNetApp extends React.Component {
   componentDidMount() {
     this.props.initApp();
+    window.addEventListener('unhandledrejection', this.handleUncatchedErrors);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('unhandledrejection', this.handleUncatchedErrors);
+  }
+
+  handleUncatchedErrors = (reason, promise) => {
+    console.log('error');
+  };
 
   render() {
     return (
@@ -32,13 +41,17 @@ class SocialNetApp extends React.Component {
         <Navbar />
         <div className='app-wrapper-content'>
           <Suspense fallback={<Loader />}>
-            <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-            <Route path='/dialogs' render={() => <DialogsContainer />} />
-            <Route path='/news' component={News} />
-            <Route path='/music' component={Music} />
-            <Route path='/settings' component={Settings} />
-            <Route path='/users' render={() => <UsersContainer />} />
-            <Route path='/login' component={Login} />
+            <Switch>
+              <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
+              <Route path='/dialogs' render={() => <DialogsContainer />} />
+              <Route path='/news' component={News} />
+              <Route path='/music' component={Music} />
+              <Route path='/settings' component={Settings} />
+              <Route path='/users' render={() => <UsersContainer />} />
+              <Route path='/login' component={Login} />
+              <Route exact path='/' render={() => <Redirect to='/profile' />} />
+              <Route path='*' render={() => <div>404 PAGE NOT FOUND</div>} />
+            </Switch>
           </Suspense>
         </div>
         <FriendsBarContainer />
