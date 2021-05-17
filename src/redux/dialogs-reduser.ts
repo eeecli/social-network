@@ -1,7 +1,23 @@
 const ADD_MESSAGE = 'social-network/dialogs-reduser/ADD-MESSAGE';
 const UPDATE_NEW_MESSAGE_TEXT = 'social-network/dialogs-reduser/UPDATE-NEW-MESSAGE-TEXT';
 
-const initialState = {
+type DialogsType = {
+  id: number,
+  name: string,
+};
+
+type MessagesType = {
+  id: number,
+  message: string,
+};
+
+export type InitialStateType = {
+  dialogs: Array<DialogsType>
+  messages: Array<MessagesType>
+  newMessageText: null | string
+};
+
+const initialState: InitialStateType = {
   dialogs: [
     {id: 1, name: 'Mishulka'},
     {id: 2, name: 'Colleni'},
@@ -13,9 +29,10 @@ const initialState = {
     {id: 2, message: 'Where are you?'},
     {id: 3, message: 'I bring the shawerma for you'},
   ],
+  newMessageText: null,
 };
 
-const dialogsReduser = (state = initialState, action) => {
+const dialogsReduser = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case ADD_MESSAGE:
       return {
@@ -29,6 +46,11 @@ const dialogsReduser = (state = initialState, action) => {
   }
 };
 
-export const sendMessage = (message) => ({type: ADD_MESSAGE, message});
+type SendMessageType = {
+  type: typeof ADD_MESSAGE
+  message: string
+};
+
+export const sendMessage = (message: string): SendMessageType => ({type: ADD_MESSAGE, message});
 
 export default dialogsReduser;

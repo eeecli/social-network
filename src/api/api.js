@@ -2,7 +2,7 @@ import axios from 'axios';
 import key from './myData';
 
 const instance = axios.create({
-  baseURL: `https://social-network.samuraijs.com/api/1.0/`,
+  baseURL: 'https://social-network.samuraijs.com/api/1.0/',
   withCredentials: true,
   headers: key,
 });
@@ -25,32 +25,37 @@ export const profileAPI = {
     return instance.get(`profile/status/${userId}`);
   },
   updateStatus(status) {
-    return instance.put(`profile/status/`, {status});
+    return instance.put('profile/status/', { status });
   },
   putPhoto(photo) {
     const formData = new FormData();
     formData.append('image', photo);
-    return instance.put(`profile/photo`, formData);
+    return instance.put('profile/photo', formData);
   },
   setProfile(profileInfo) {
-    return instance.put(`profile`, profileInfo);
+    return instance.put('profile', profileInfo);
   },
 };
 
 export const authAPI = {
   me() {
-    return instance.get(`auth/me`);
+    return instance.get('auth/me');
   },
   login(email, password, rememberMe, captcha) {
-    return instance.post(`auth/login`, {email, password, rememberMe, captcha});
+    return instance.post('auth/login', {
+      email,
+      password,
+      rememberMe,
+      captcha,
+    });
   },
   logout() {
-    return instance.delete(`auth/login`);
+    return instance.delete('auth/login');
   },
 };
 
 export const securityAPI = {
   getCaptcha() {
-    return instance.delete(`security/get-captcha-url`);
+    return instance.delete('security/get-captcha-url');
   },
 };

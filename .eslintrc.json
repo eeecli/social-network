@@ -1,41 +1,76 @@
 {
     "extends": [
-        "airbnb",
-        "prettier",
-        "prettier/react"
+      "airbnb",
+      "prettier",
+      "prettier/react",
+      "eslint:recommended",
+      "plugin:jest/recommended"
     ],
+    "env": {
+      "jest/globals": true
+    },
     "plugins": [
-        "prettier"
+      "prettier"
     ],
     "rules": {
-        "prettier/prettier": "warn",
-        "no-unused-vars": "warn",
-        "no-console": "off",
-        "func-names": "off",
-        "no-process-exit": "off",
-        "object-shorthand": "off",
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "react/jsx-filename-extension": [
-            "warn", {"extensions": [
-                    ".js",
-                    ".jsx"
-                ]
-            
-            }],
-        "react/destructuring-assignment": "off",
-        "react/jsx-props-no-spreading": "off",
-        "react/prop-types": "off",
-        "no-plusplus": "off",
-        "no-debugger": "warn",
-        "import/prefer-default-export": "off"
+      "semi": [
+        "warn",
+        "always"
+      ],
+      "no-unused-vars": "warn",
+      "no-console": "off",
+      "func-names": "off",
+      "no-process-exit": "off",
+      "object-shorthand": "off",
+      "linebreak-style": [
+          "error",
+          "windows"
+      ],
+      "react/jsx-filename-extension": [
+          "warn", {"extensions": [
+                  ".js",
+                  ".jsx",
+                  ".ts"
+              ]           
+          }],
+      "react/destructuring-assignment": "off",
+      "react/jsx-props-no-spreading": "off",
+      "react/prop-types": "off",
+      "no-plusplus": "off",
+      "no-debugger": "warn",
+      "import/prefer-default-export": "off",
+      "import/extensions": [
+        "error",
+        "ignorePackages",
+        {
+          "js": "never",
+          "jsx": "never",
+          "ts": "never",
+          "tsx": "never"
+        }
+      ]
     },       
     "parser": "babel-eslint",
     "parserOptions": {
         "sourceType": "module",
         "allowImportExportEverywhere": true
-    }
-    
+    },
+    "overrides": [
+        {
+          "parser": "@typescript-eslint/parser",
+          "files": ["**/*.ts", "**/*.tsx"],
+          "plugins": ["@typescript-eslint"],
+          "rules": {
+            "no-use-before-define": "off",
+            "@typescript-eslint/no-use-before-define": ["error"]
+          }
+        }
+      ],
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"]
+          }
+        }
+      }
 }

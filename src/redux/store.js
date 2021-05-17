@@ -6,7 +6,7 @@ const store = {
   _state: {
     profilePage: {
       posts: [
-        {id: 1, message: 'I aint sullen, Im lachrymose', likesCount: 15},
+        { id: 1, message: 'I aint sullen, Im lachrymose', likesCount: 15 },
         {
           id: 2,
           message: 'You have to seize life and relish every minute',
@@ -17,15 +17,15 @@ const store = {
     },
     dialogsPage: {
       dialogs: [
-        {id: 1, name: 'Mishulka'},
-        {id: 2, name: 'Colleni'},
-        {id: 3, name: 'Allushka'},
-        {id: 4, name: 'Kishunchik'},
+        { id: 1, name: 'Mishulka' },
+        { id: 2, name: 'Colleni' },
+        { id: 3, name: 'Allushka' },
+        { id: 4, name: 'Kishunchik' },
       ],
       messages: [
-        {id: 1, message: 'Hi'},
-        {id: 2, message: 'Where are you?'},
-        {id: 3, message: 'I bring the shawerma for you'},
+        { id: 1, message: 'Hi' },
+        { id: 2, message: 'Where are you?' },
+        { id: 3, message: 'I bring the shawerma for you' },
       ],
       newMessageText: '',
     },
@@ -49,8 +49,7 @@ const store = {
         {
           id: 4,
           name: 'Kishunchik',
-          icon:
-            'https://sun9-50.userapi.com/impf/c850136/v850136968/d1b24/-EMtgReU__k.jpg?size=200x0&quality=96&crop=0,0,960,960&sign=9c0e2c292504f9642a51d5d10997d550&ava=1',
+          icon: 'https://sun9-50.userapi.com/impf/c850136/v850136968/d1b24/-EMtgReU__k.jpg?size=200x0&quality=96&crop=0,0,960,960&sign=9c0e2c292504f9642a51d5d10997d550&ava=1',
         },
       ],
     },

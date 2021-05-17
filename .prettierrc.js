@@ -3,9 +3,9 @@ module.exports = {
   singleQuote: true,
   tabWidth: 2,
   jsxSingleQuote: true,
-  bracketSpacing: false,
+  bracketSpacing: true,
   jsxBracketSameLine: true,
-  parser: 'babel',
   endOfLine: 'auto',
   arrowParens: 'always',
+  semi: false,
 };

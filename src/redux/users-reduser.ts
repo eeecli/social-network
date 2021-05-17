@@ -1,4 +1,5 @@
 import {usersAPI} from '../api/api';
+import { PhotosType } from '../types/types';
 
 const FOLLOW_TOGGLE = 'social-network/users-reduser/FOLLOW-TOGGLE';
 const SET_USERS = 'social-network/users-reduser/SET-USERS';
@@ -6,13 +7,28 @@ const SET_IS_LOADING = 'social-network/users-reduser/SET-IS-LOADING';
 const SET_FOLLOWING_IN_PROGRESS = 'social-network/users-reduser/SET-FOLLOWING-IN-PROGRESS';
 const SET_USERS_COUNT = 'social-network/users-reduser/SET-USERS-COUNT';
 
-const initialState = {
+type UserType = {
+  id: number
+  name: string
+  status: string | null
+  photos: PhotosType
+  followed: boolean
+}
+
+export type InitialStateType = {
+  users: Array<UserType>,
+  usersCount: number,
+  isLoading: boolean,
+  followingInProgress: Array<number>,
+}
+
+const initialState: InitialStateType = {
   users: [],
   usersCount: 0,
   isLoading: false,
   followingInProgress: [],
 };
-const usersReduser = (state = initialState, action) => {
+const usersReduser = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case FOLLOW_TOGGLE:
       return {
@@ -50,33 +66,59 @@ const usersReduser = (state = initialState, action) => {
   }
 };
 
-export const toggleFollow = (userId) => ({
+type ToggleFollowType = {
+  type: typeof FOLLOW_TOGGLE
+  userId: number
+}
+
+export const toggleFollow = (userId: number): ToggleFollowType => ({
   type: FOLLOW_TOGGLE,
   userId,
 });
 
-export const setUsers = (users) => ({
+type SetUsersType = {
+  type: typeof SET_USERS
+  users: number
+}
+
+export const setUsers = (users: number): SetUsersType => ({
   type: SET_USERS,
   users,
 });
 
-export const setUsersCount = (usersCount) => ({
+type SetUsersCountType = {
+  type: typeof SET_USERS_COUNT
+  usersCount: number
+}
+
+export const setUsersCount = (usersCount: number): SetUsersCountType => ({
   type: SET_USERS_COUNT,
   usersCount,
 });
 
-export const setIsLoading = (isLoading) => ({
+type SetIsLoadingType = {
+  type: typeof SET_IS_LOADING
+  isLoading: boolean
+}
+
+export const setIsLoading = (isLoading: boolean): SetIsLoadingType => ({
   type: SET_IS_LOADING,
   isLoading,
 });
 
-export const setFollowingInProgress = (isInProgres, userId) => ({
+type SetFollowingInProgressType = {
+  type: typeof SET_FOLLOWING_IN_PROGRESS
+  isInProgres: boolean
+  userId: number
+}
+
+export const setFollowingInProgress = (isInProgres: boolean, userId: number): SetFollowingInProgressType => ({
   type: SET_FOLLOWING_IN_PROGRESS,
   isInProgres,
   userId,
 });
 
-export const requestUsers = (page, pageSize) => async (dispatch) => {
+export const requestUsers = (page: number, pageSize: number) => async (dispatch: any) => {
   dispatch(setIsLoading(true));
   const response = await usersAPI.getUsers(page, pageSize);
   dispatch(setUsers(response.data.items));
@@ -84,7 +126,7 @@ export const requestUsers = (page, pageSize) => async (dispatch) => {
   dispatch(setIsLoading(false));
 };
 
-export const toggleUserFollow = (userId, isUserFollowed) => async (dispatch) => {
+export const toggleUserFollow = (userId:number, isUserFollowed: boolean) => async (dispatch: any) => {
   dispatch(setIsLoading(true));
   dispatch(setFollowingInProgress(true, userId));
   const response = await usersAPI.toggleFollow(userId, isUserFollowed);
