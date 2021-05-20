@@ -7,7 +7,7 @@ const SET_IS_LOADING = 'social-network/users-reduser/SET-IS-LOADING';
 const SET_FOLLOWING_IN_PROGRESS = 'social-network/users-reduser/SET-FOLLOWING-IN-PROGRESS';
 const SET_USERS_COUNT = 'social-network/users-reduser/SET-USERS-COUNT';
 
-type UserType = {
+export type UserType = {
   id: number
   name: string
   status: string | null
@@ -16,10 +16,10 @@ type UserType = {
 }
 
 export type InitialStateType = {
-  users: Array<UserType>,
-  usersCount: number,
-  isLoading: boolean,
-  followingInProgress: Array<number>,
+  users: Array<UserType>
+  usersCount: number
+  isLoading: boolean
+  followingInProgress: Array<number>
 }
 
 const initialState: InitialStateType = {

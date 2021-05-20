@@ -7,5 +7,4 @@ module.exports = {
   jsxBracketSameLine: true,
   endOfLine: 'auto',
   arrowParens: 'always',
-  semi: false,
-};
+}

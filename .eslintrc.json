@@ -13,10 +13,6 @@
       "prettier"
     ],
     "rules": {
-      "semi": [
-        "warn",
-        "always"
-      ],
       "no-unused-vars": "warn",
       "no-console": "off",
       "func-names": "off",
@@ -30,7 +26,8 @@
           "warn", {"extensions": [
                   ".js",
                   ".jsx",
-                  ".ts"
+                  ".ts",
+                  ".tsx"
               ]           
           }],
       "react/destructuring-assignment": "off",
@@ -62,7 +59,8 @@
           "plugins": ["@typescript-eslint"],
           "rules": {
             "no-use-before-define": "off",
-            "@typescript-eslint/no-use-before-define": ["error"]
+            "@typescript-eslint/no-use-before-define": ["error"],
+            "no-undef": "off"
           }
         }
       ],

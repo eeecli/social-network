@@ -1,14 +1,22 @@
 import React, {useState} from 'react';
 import classes from './Pagination.module.css';
 
-const Pagination = (props) => {
-  const pages = [];
-  const pagesCount = Math.ceil(props.elemCount / props.pageSize);
+type PropsType = {
+  elemCount: number
+  pageSize: number
+  portionSize?: number
+  onPageChanged: (pageNumber: number) => void
+  currentPage: number
+}
 
-  const portionsCount = Math.ceil(pagesCount / props.portionSize);
+const Pagination: React.FC<PropsType> = ({elemCount, pageSize, portionSize = 10, onPageChanged, currentPage}) => {
+  const pages: Array<number> = [];
+  const pagesCount = Math.ceil(elemCount / pageSize);
+
+  const portionsCount = Math.ceil(pagesCount / portionSize);
   const [portionNumber, setPortionNumber] = useState(1);
-  const leftSidePortion = (portionNumber - 1) * props.portionSize + 1;
-  const rigthSidePortion = portionNumber * props.portionSize;
+  const leftSidePortion = (portionNumber - 1) * portionSize + 1;
+  const rigthSidePortion = portionNumber * portionSize;
   for (let i = 1; i <= pagesCount; i++) pages.push(i);
 
   return (
@@ -40,9 +48,9 @@ const Pagination = (props) => {
             role='button'
             tabIndex={0}
             key={p}
-            onClick={() => props.onPageChanged(p)}
-            onKeyDown={() => props.onPageChanged(p)}
-            className={props.currentPage === p ? classes.currentPage : undefined}>
+            onClick={() => onPageChanged(p)}
+            onKeyDown={() => onPageChanged(p)}
+            className={currentPage === p ? classes.currentPage : undefined}>
             {p}
           </span>
         ))}

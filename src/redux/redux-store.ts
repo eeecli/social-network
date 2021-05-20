@@ -9,7 +9,7 @@ import authReduser from './auth-reduser';
 import appReduser from './app-reduser';
 import paginationReduser from './pagination-reduser';
 
-const redusers = combineReducers({
+const rootReduser = combineReducers({
   dialogsPage: dialogsReduser,
   profilePage: profileReduser,
   friendsBar: friendsbarReduser,
@@ -20,6 +20,9 @@ const redusers = combineReducers({
   pagination: paginationReduser,
 });
 
-const store = createStore(redusers, applyMiddleware(thunk));
+type RootReduserType = typeof rootReduser;
+export type AppStateType = ReturnType<RootReduserType>;
+
+const store = createStore(rootReduser, applyMiddleware(thunk));
 
 export default store;
