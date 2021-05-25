@@ -1,5 +1,5 @@
 import {stopSubmit} from 'redux-form';
-import {authAPI, securityAPI} from '../api/api';
+import {authAPI, ResultCodeEnum, ResultCodeForCaptchaEnum, securityAPI} from '../api/api';
 
 const SET_USER_AUTH_DATA = 'social-network/auth-reduser/SET-USER-AUTH-DATA';
 const SET_CAPTCHA = 'social-network/auth-reduser/SET-CAPTCHA';
@@ -60,9 +60,9 @@ export const setCaptha = (captchaURL: string): SetCapthaType => ({
 });
 
 export const getAuthUserData = () => async (dispatch: any) => {
-  const response = await authAPI.me();
-  if (response.data.resultCode === 0) {
-    const {id, email, login} = response.data.data;
+  const meSata = await authAPI.me();
+  if (meSata.resultCode === ResultCodeEnum.Success) {
+    const {id, email, login} = meSata.data;
     dispatch(setAuthUserData(id, email, login, true));
   }
 };
@@ -75,12 +75,12 @@ export const getCaptcha = () => async (dispatch: any) => {
 export const login = (email: string, password: string, rememberMe: boolean = false, captcha: string) => async (
   dispatch: any
 ) => {
-  const response = await authAPI.login(email, password, rememberMe, captcha);
-  if (response.data.resultCode === 0) dispatch(getAuthUserData());
+  const loginData = await authAPI.login(email, password, rememberMe, captcha);
+  if (loginData.resultCode === ResultCodeEnum.Success) dispatch(getAuthUserData());
   else {
-    if (response.data.resultCode === 10) dispatch(getCaptcha());
+    if (loginData.resultCode === ResultCodeForCaptchaEnum.CaptchaIsRequired) dispatch(getCaptcha());
     dispatch(
-      stopSubmit('login', {_error: response.data.messages[0].length > 0 ? response.data.messages[0] : 'Some error'})
+      stopSubmit('login', {_error: loginData.messages[0].length > 0 ? loginData.messages[0] : 'Some error'})
     );
   }
 };

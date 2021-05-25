@@ -1,5 +1,9 @@
+import { type } from 'os';
+import { Dispatch } from 'react';
+import { ThunkAction } from 'redux-thunk';
 import {usersAPI} from '../api/api';
 import { PhotosType } from '../types/types';
+import { AppStateType } from './redux-store';
 
 const FOLLOW_TOGGLE = 'social-network/users-reduser/FOLLOW-TOGGLE';
 const SET_USERS = 'social-network/users-reduser/SET-USERS';
@@ -27,8 +31,9 @@ const initialState: InitialStateType = {
   usersCount: 0,
   isLoading: false,
   followingInProgress: [],
-};
-const usersReduser = (state = initialState, action: any): InitialStateType => {
+}
+
+const usersReduser = (state = initialState, action: ActionsType): InitialStateType => {
   switch (action.type) {
     case FOLLOW_TOGGLE:
       return {
@@ -66,6 +71,8 @@ const usersReduser = (state = initialState, action: any): InitialStateType => {
   }
 };
 
+type ActionsType = ToggleFollowType | SetUsersType | SetUsersCountType | SetIsLoadingType | SetFollowingInProgressType
+
 type ToggleFollowType = {
   type: typeof FOLLOW_TOGGLE
   userId: number
@@ -78,10 +85,10 @@ export const toggleFollow = (userId: number): ToggleFollowType => ({
 
 type SetUsersType = {
   type: typeof SET_USERS
-  users: number
+  users: Array<UserType>
 }
 
-export const setUsers = (users: number): SetUsersType => ({
+export const setUsers = (users: Array<UserType>): SetUsersType => ({
   type: SET_USERS,
   users,
 });
@@ -118,7 +125,9 @@ export const setFollowingInProgress = (isInProgres: boolean, userId: number): Se
   userId,
 });
 
-export const requestUsers = (page: number, pageSize: number) => async (dispatch: any) => {
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
+
+export const requestUsers = (page: number, pageSize: number): ThunkType => async (dispatch: Dispatch<ActionsType>) => {
   dispatch(setIsLoading(true));
   const response = await usersAPI.getUsers(page, pageSize);
   dispatch(setUsers(response.data.items));
@@ -126,7 +135,7 @@ export const requestUsers = (page: number, pageSize: number) => async (dispatch:
   dispatch(setIsLoading(false));
 };
 
-export const toggleUserFollow = (userId:number, isUserFollowed: boolean) => async (dispatch: any) => {
+export const toggleUserFollow = (userId:number, isUserFollowed: boolean): ThunkType => async (dispatch: Dispatch<ActionsType>) => {
   dispatch(setIsLoading(true));
   dispatch(setFollowingInProgress(true, userId));
   const response = await usersAPI.toggleFollow(userId, isUserFollowed);
